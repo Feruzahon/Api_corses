@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 from decouple import config
+from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -45,7 +46,7 @@ INSTALLED_APPS = [
 
     #мои приложение которые будут работать
     'accounts',
-    #'cours',
+    'courses',
     #'review',
     #'tests_app',
 
@@ -156,3 +157,15 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS   = True
+
+SIMPLE_JWT = {
+    # Время жизни access-токена
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=30),  # токен будет жить 30 дней
+
+    # Время жизни refresh-токена
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=60),  # можно обновлять токен до 60 дней
+
+    'ROTATE_REFRESH_TOKENS': True,  # при использовании refresh-токена создается новый
+    'BLACKLIST_AFTER_ROTATION': True,  # старый refresh токен будет заблокирован
+
+}

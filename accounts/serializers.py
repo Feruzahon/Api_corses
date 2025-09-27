@@ -5,10 +5,11 @@ User = get_user_model()
 
 class RegisterSerializer(serializers.ModelSerializer):
     p2 = serializers.CharField(min_length = 8,max_length = 20, required = True, write_only = True)
+    role = serializers.ChoiceField(choices = [('teacher','учитель'),('students','Студент')], default = 'student')
 
     class Meta:
         model = User
-        fields = ('email','password','p2')
+        fields = ('email','password','p2','role')
 
 
     def validate(self, attrs):
