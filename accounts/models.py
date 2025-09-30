@@ -7,7 +7,6 @@ import uuid
 from .manager import UserManager
 
 class CustomUser(AbstractUser):
-#это кортеж с выбором  первые элементы это название в БД а второе в формах
     ROLE_CHOICES = (
         ('teacher','Учитель'),
         ('student','Студент'),
@@ -19,8 +18,6 @@ class CustomUser(AbstractUser):
     is_active = models.BooleanField(default=False)
     activation_code = models.CharField(max_length=300, blank=True)
     role  = models.CharField(max_length=15, choices=ROLE_CHOICES,default='student')
-  #choices=ROLE_CHOICES - это ограничение выбора что то другого 
-  # default='student' - это означает что если не указать это поле то оно автоматом будет студент 
 
     objects = UserManager()
 

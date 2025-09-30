@@ -18,7 +18,6 @@ class TestSerializer(ModelSerializer):
 
 
 class LessonSerializer(ModelSerializer):
-    #tests подтянет все тесты, связфнные с уроко 
     tests = TestSerializer(many=True,read_only = True)
 
     class Meta:
@@ -27,11 +26,7 @@ class LessonSerializer(ModelSerializer):
         
 
 class CourseSerializer(ModelSerializer):
-    #lessons подтянет все уроки, связанные с курсом 
     lessons = LessonSerializer(many = True, read_only = True)
-    #read_only - через этой сериализатор только данные читаются , 
-    # но не создаются 
-
     class Meta:
         model  = Course
         fields = '__all__'

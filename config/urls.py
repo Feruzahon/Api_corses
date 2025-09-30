@@ -21,19 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/',include('accounts.urls')),
     path('courses/',include('courses.urls')),
-    #path('comment/',include('review.urls')),
-    #path('test/',include('tests_app.urls'))
+    path('comment/',include('reviews.urls')),
+
 ]
 
-
-
-
-#В urls.py подключаем вьюхи для получения и обновления токена:
-
-#from django.urls import path
-#from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-
-#urlpatterns = [
-#    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # получить токен
-#    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # обновить токен
-#]

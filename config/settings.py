@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     #мои приложение которые будут работать
     'accounts',
     'courses',
-    #'review',
+    'reviews',
     #'tests_app',
 
 ]
@@ -145,9 +145,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_FILTER_BACKENDS':[
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',#искать по определенному слову которое есть 
+        'rest_framework.filters.OrderingFilter',#
+    ],
+    'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.PageNumberPagination',#это самое простое пагинацие по номеру страниц
+    'PAGE_SIZE':3 # сколько обьектов в одном странице означает я выбрала 3 так как у меня пока данные меньше
 }
 #тоесть этот настройка делает так что наш API работал через токен авторизации JWT 
+
 
 
 #это часть кода для отправку писем через Gmail
