@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'accounts',
     'courses',
     'reviews',
-    #'tests_app',
+   
 
 ]
 
@@ -139,23 +139,19 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#это код для токена я по лекции помню
-#этот код настройка django REST framework используется JVTAuthentication 
-# для проверки что пользователь авторизован JSON WEB TOKEN -это токен выдается после входа в систему
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_FILTER_BACKENDS':[
         'django_filters.rest_framework.DjangoFilterBackend',
-        'rest_framework.filters.SearchFilter',#искать по определенному слову которое есть 
+        'rest_framework.filters.SearchFilter',
         'rest_framework.filters.OrderingFilter',#
     ],
-    'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.PageNumberPagination',#это самое простое пагинацие по номеру страниц
-    'PAGE_SIZE':3 # сколько обьектов в одном странице означает я выбрала 3 так как у меня пока данные меньше
+    'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE':3 
 }
-#тоесть этот настройка делает так что наш API работал через токен авторизации JWT 
-
 
 
 #это часть кода для отправку писем через Gmail
@@ -167,13 +163,11 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS   = True
 
 SIMPLE_JWT = {
-    # Время жизни access-токена
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=30),  # токен будет жить 30 дней
 
-    # Время жизни refresh-токена
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=60),  # можно обновлять токен до 60 дней
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1), 
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1), 
 
-    'ROTATE_REFRESH_TOKENS': True,  # при использовании refresh-токена создается новый
-    'BLACKLIST_AFTER_ROTATION': True,  # старый refresh токен будет заблокирован
+    'ROTATE_REFRESH_TOKENS': True, 
+    'BLACKLIST_AFTER_ROTATION': True,  
 
 }
